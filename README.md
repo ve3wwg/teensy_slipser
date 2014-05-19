@@ -23,3 +23,8 @@ Teensy-3.x Slip Serial Class
         void write(const void *buffer,unsigned length);     // Read packet
         void *read(unsigned& length);                       // Write packet
     };
+
+
+This project depends upon the SLIP class here:
+
+    https://github.com/ve3wwg/slip
