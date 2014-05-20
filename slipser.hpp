@@ -12,7 +12,7 @@
 class SlipSer {
 	HardwareSerial&		serial;		// Serial device
 	SLIP			slip;
-	char			*buffer;	// Receive buffer
+	uint8_t			*buffer;	// Receive buffer
 	unsigned		rxlength;	// Received message length
 	
 public:	SlipSer(HardwareSerial& ser_dev);
@@ -21,7 +21,7 @@ public:	SlipSer(HardwareSerial& ser_dev);
 	inline void tx_byte(uint8_t b)	{ serial.write(int(b)); }		
 	inline void tx_flush()		{ serial.flush(); }
 
-	void open(uint32_t baud,char *rxbuffer,unsigned maxbuflen,uint32_t format = SERIAL_8N1);
+	void open(uint32_t baud,void *rxbuffer,unsigned maxbuflen,uint32_t format = SERIAL_8N1);
 	void close();
 
 	void write(const void *buffer,unsigned length);

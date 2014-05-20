@@ -59,10 +59,10 @@ SlipSer::SlipSer(HardwareSerial& ser_dev) : serial(ser_dev), slip(slip_rx,slip_t
 //////////////////////////////////////////////////////////////////////
 
 void
-SlipSer::open(uint32_t baud,char *rxbuffer,unsigned maxbuflen,uint32_t format) {
+SlipSer::open(uint32_t baud,void *rxbuffer,unsigned maxbuflen,uint32_t format) {
 
 	close();				// Release existing buffer
-	buffer = rxbuffer;			// I/O buffer to use
+	buffer = (uint8_t *)rxbuffer;		// I/O buffer to use
 	rxlength = maxbuflen;			// Maximum receive length
 	serial.begin(baud,format);		// Set baud rate and format
 }
