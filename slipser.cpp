@@ -65,6 +65,7 @@ SlipSer::open(uint32_t baud,void *rxbuffer,unsigned maxbuflen,uint32_t format) {
 	buffer = (uint8_t *)rxbuffer;		// I/O buffer to use
 	rxlength = maxbuflen;			// Maximum receive length
 	serial.begin(baud,format);		// Set baud rate and format
+	slip.enable_crc8(true);			// Use CRC-8
 }
 
 //////////////////////////////////////////////////////////////////////
