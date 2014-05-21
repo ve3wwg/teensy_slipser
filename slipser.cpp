@@ -12,6 +12,8 @@
 
 #include "slipser.hpp"
 
+extern "C" void yield();
+
 //////////////////////////////////////////////////////////////////////
 // Serial RX Routine
 //////////////////////////////////////////////////////////////////////
@@ -19,6 +21,9 @@
 static uint8_t
 slip_rx(void *arg) {
 	SlipSer *obj = (SlipSer *)arg;
+
+	while ( !obj->rx_available() )
+		yield();
 
 	return obj->rx_byte();
 }
@@ -87,6 +92,7 @@ SlipSer::close() {
 void
 SlipSer::write(const void *buffer,unsigned length) {
 	slip.write(buffer,length);
+	yield();
 }
 
 //////////////////////////////////////////////////////////////////////
