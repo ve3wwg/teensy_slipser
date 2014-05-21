@@ -17,6 +17,7 @@ class SlipSer {
 	
 public:	SlipSer(HardwareSerial& ser_dev);
 
+	inline int rx_available()	{ return serial.available(); }
 	inline uint8_t rx_byte()	{ return uint8_t(serial.read()); }
 	inline void tx_byte(uint8_t b)	{ serial.write(int(b)); }		
 	inline void tx_flush()		{ serial.flush(); }
